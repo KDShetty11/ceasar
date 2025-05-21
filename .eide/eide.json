@@ -1,0 +1,83 @@
+{
+  "name": "ceasar",
+  "type": "ANY-GCC",
+  "dependenceList": [],
+  "srcDirs": [],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": []
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "13eef34d1b955df6079811bc27ce6467"
+  },
+  "targets": {
+    "Debug": {
+      "excludeList": [],
+      "toolchain": "ANY_GCC",
+      "compileConfig": {
+        "linkerScriptPath": "undefined.lds",
+        "options": "null"
+      },
+      "uploader": "JLink",
+      "uploadConfig": {
+        "bin": "",
+        "baseAddr": "",
+        "cpuInfo": {
+          "vendor": "null",
+          "cpuName": "null"
+        },
+        "proType": 1,
+        "speed": 8000,
+        "otherCmds": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [],
+        "libList": [],
+        "defineList": []
+      },
+      "builderOptions": {
+        "ANY_GCC": {
+          "version": 1,
+          "beforeBuildTasks": [],
+          "afterBuildTasks": [
+            {
+              "name": "make hex",
+              "disable": true,
+              "abortAfterFailed": false,
+              "command": "\"${CompilerFolder}/${CompilerPrefix}objcopy\" -O ihex \"${OutDir}/${TargetName}.elf\" \"${OutDir}/${TargetName}.hex\""
+            },
+            {
+              "name": "make bin",
+              "disable": true,
+              "abortAfterFailed": false,
+              "command": "\"${CompilerFolder}/${CompilerPrefix}objcopy\" -O binary \"${OutDir}/${TargetName}.elf\" \"${OutDir}/${TargetName}.bin\""
+            }
+          ],
+          "global": {},
+          "c/cpp-compiler": {
+            "one-elf-section-per-function": true,
+            "one-elf-section-per-data": true,
+            "C_FLAGS": "-c -xc",
+            "CXX_FLAGS": "-c -xc++"
+          },
+          "asm-compiler": {
+            "ASM_FLAGS": "-c"
+          },
+          "linker": {
+            "output-format": "elf",
+            "remove-unused-input-sections": true,
+            "LD_FLAGS": "",
+            "LIB_FLAGS": ""
+          }
+        }
+      }
+    }
+  },
+  "version": "3.5"
+}

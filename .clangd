@@ -1,0 +1,4 @@
+CompileFlags:
+    Add: []
+    CompilationDatabase: ./build/Debug
+    Compiler: null\bin\g++.exe
