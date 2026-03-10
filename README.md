@@ -1,150 +1,94 @@
+# Caesar Cipher in x86 Assembly
 
-# 🏛️ Caesar Cipher in x86 Assembly
-
-A simple, interactive Caesar Cipher implementation written in x86 Assembly (NASM/GAS syntax).  
-Encrypts any alphabetic text using a user-supplied shift, preserving case and skipping non-letters.
-
----
-
-## ✨ Features
-
-- **User-friendly prompts** for plaintext and shift value
-- **Handles both uppercase and lowercase** letters
-- **Wraps around alphabet** (e.g., 'Z' + 1 → 'A')
-- **Skips non-alphabetic characters**
-- **Efficient, low-level implementation**
+A simple, interactive Caesar Cipher implementation written in x86 Assembly (NASM syntax).
+Encrypts alphabetic text using a user-supplied shift value, preserving case and skipping non-letter characters.
 
 ---
 
-## 🚀 How It Works
+## Features
 
-1. **Prompt for plaintext**  
-   User is asked to enter the text to encrypt.
-
-2. **Prompt for shift value**  
-   User enters a number (e.g., 3 for the classic Caesar cipher).
-
-3. **Encryption**  
-   Each letter is shifted by the given value, wrapping around A-Z or a-z.
-
-4. **Output**  
-   The encrypted text (ciphertext) is displayed.
+- User prompts for plaintext and shift value
+- Handles both uppercase and lowercase letters
+- Wraps around the alphabet (e.g., 'Z' + 1 = 'A')
+- Skips non-alphabetic characters (spaces, punctuation, numbers)
+- Pure assembly — no C library dependencies
 
 ---
 
-## 🛠️ Step-by-Step Usage
+## How It Works
 
-### 1️⃣ Assemble and Link
+1. **Prompt for plaintext** — user enters the text to encrypt
+2. **Prompt for shift value** — user enters a number (e.g., 3 for classic Caesar)
+3. **Encryption** — each letter is shifted, wrapping around A-Z or a-z
+4. **Output** — the ciphertext is displayed
 
+---
+
+## Usage
+
+### Assemble and Link
+
+```bash
+nasm -f elf32 ceasar.s -o ceasar.o
+ld -m elf_i386 ceasar.o -o ceasar
 ```
 
+### Run
 
-# Assemble
-
-nasm -f elf32 ceaser.asm -o ceaser.o
-
-# Link
-
-ld -m elf_i386 ceaser.o -o ceaser
-
+```bash
+./ceasar
 ```
 
-### 2️⃣ Run the Program
+### Example
 
 ```
-
-./ceaser
-
-```
-
-### 3️⃣ Example Session
-
-```
-
 Please enter the plaintext: Hello, World!
 Please enter the shift value: 3
 
 Khoor, Zruog!
-
 ```
 
 ---
 
-## 🧩 How the Code Works (Visual Guide)
+## Code Structure
 
 ```
-
-flowchart TD
-A[Start] --> B[Prompt for plaintext]
-B --> C[Read plaintext into buffer]
-C --> D[Prompt for shift value]
-D --> E[Read shift value as string]
-E --> F[Convert shift string to integer]
-F --> G[Apply Caesar cipher to buffer]
-G --> H[Calculate ciphertext length]
-H --> I[Print ciphertext]
-I --> J[Exit]
-
+ceasar.s             # Main assembly source
+caesar-template.s    # Template/reference version
 ```
 
----
+### Key Functions
 
-## 💡 Key Functions
+| Function | Purpose |
+| :-- | :-- |
+| `PrintFunction` | Outputs strings to terminal via `sys_write` |
+| `ReadFromStdin` | Reads user input via `sys_read` |
+| `GetStringLength` | Finds string length up to newline |
+| `AtoI` | Converts ASCII string to integer |
+| `CaesarCipher` | Applies the shift to each letter |
 
-- **PrintFunction**: Outputs strings to the terminal
-- **ReadFromStdin**: Reads user input
-- **GetStringLength**: Finds string length up to newline
-- **AtoI**: Converts ASCII string to integer
-- **CaesarCipher**: Applies the shift to each letter
+### Cipher Logic
 
----
-
-## 📝 Caesar Cipher Logic
-
-- For each character:
-    - **If uppercase**: Shift within 'A'-'Z'
-    - **If lowercase**: Shift within 'a'-'z'
-    - **Else**: Leave unchanged
+- **Uppercase (A-Z):** Shift within ASCII 65-90, wrap with modulo
+- **Lowercase (a-z):** Shift within ASCII 97-122, wrap with modulo
+- **Other characters:** Pass through unchanged
 
 ---
 
-## 📦 File Structure
+## Notes
 
-```
-
-ceaser.asm      \# Main assembly source
-
-```
+- Shift value can be 0-255 (only modulo 26 is applied to letters)
+- Input buffer limited to 101 characters for plaintext, 3 digits for shift
 
 ---
 
-## 🧠 Notes
+## Author
 
-- Only **alphabetic characters** are shifted. Punctuation, numbers, and spaces are unchanged.
-- Shift value can be any integer between 0 and 255 (only the modulo 26 part is used for letters).
-- Input is limited to 101 characters for plaintext and 3 digits for the shift value.
+**Kurudunje Deekshith Shetty**
 
 ---
 
-## 🏁 Exit
-
-The program prints the encrypted message and exits cleanly.
-
----
-
-## 👩‍💻 Authors
-
-- Kurudunje Deekshith Shetty
-
----
-
-## 📚 References
+## References
 
 - [Wikipedia: Caesar Cipher](https://en.wikipedia.org/wiki/Caesar_cipher)
 - [x86 Assembly Language Reference](https://www.felixcloutier.com/x86/)
-
----
-
-Enjoy encrypting your messages the ancient Roman way! 🏺🔒
-
-

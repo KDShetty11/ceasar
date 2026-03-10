@@ -1,8 +1,10 @@
-# dot files
-/.vscode/launch.json
-/.settings
-/.eide/log
-/.eide.usr.ctx.json
+# IDE and editor files
+.vscode/
+.eide/
+.clang-format
+.clangd
+*.code-workspace
+.eide.usr.ctx.json
 
 # project out
 /build
@@ -13,3 +15,7 @@
 # eide template
 *.ept
 *.eide-template
+
+# OS files
+.DS_Store
+Thumbs.db

