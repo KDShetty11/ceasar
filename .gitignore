@@ -16,6 +16,9 @@
 *.ept
 *.eide-template
 
+# Course materials
+SP/
+
 # OS files
 .DS_Store
 Thumbs.db
